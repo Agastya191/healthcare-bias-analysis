@@ -1,8 +1,8 @@
 # Socioeconomic Bias in U.S. Healthcare Access
 
-A data analysis project investigating whether **income level** and **education level** are associated with disparities in healthcare access across the United States, using CDC BRFSS survey data (~400,000 respondents).
+A data analysis project investigating whether income level and education level are associated with disparities in healthcare access across the United States using CDC BRFSS survey data (~400,000 respondents.)
 
-This work is motivated by the broader challenge of **medical dataset bias**: populations with limited healthcare access are systematically underrepresented in clinical data, which propagates downstream bias into medical AI models and treatment guidelines.
+This work is motivated by the broader challenge of medical dataset bias: populations with limited healthcare access are systematically underrepresented in clinical data, which propagates downstream bias into medical AI models and treatment guidelines.
 
 ---
 
@@ -113,13 +113,6 @@ This means ML models trained on clinical data may systematically **underperform 
 
 ---
 
-## Author
-
-**Agastya Munnangi**  
-[GitHub](https://github.com/Agastya191) · [Portfolio](https://agastya191.github.io)
-
----
-
 ## License
 
-MIT License. Data sourced from CDC BRFSS (public domain).
+Data sourced from CDC BRFSS (public domain).
