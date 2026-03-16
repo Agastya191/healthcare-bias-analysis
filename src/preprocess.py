@@ -12,15 +12,15 @@ import numpy as np
 # ── Column mappings from BRFSS codebook ──────────────────────────────────────
 
 COLUMNS_OF_INTEREST = {
-    "INCOME2":    "income_level",       # Annual household income (8 brackets)
-    "EDUCA":      "education_level",    # Highest education completed
-    "HLTHPLN1":   "has_insurance",      # Any health care coverage?
-    "MEDCOST":    "cost_barrier",       # Couldn't see doctor due to cost?
-    "CHECKUP1":   "last_checkup",       # Last routine checkup
-    "GENHLTH":    "general_health",     # Self-rated general health (1=Excellent)
-    "SEXVAR":     "sex",                # Sex (1=Male, 2=Female)
-    "RACE":       "race",               # Race/ethnicity
-    "_STATE":     "state",              # State FIPS code
+    "INCOME3":    "income_level",
+    "EDUCA":      "education_level",
+    "_HLTHPLN":   "has_insurance",
+    "MEDCOST1":   "cost_barrier",
+    "CHECKUP1":   "last_checkup",
+    "GENHLTH":    "general_health",
+    "SEXVAR":     "sex",
+    "_IMPRACE":   "race",
+    "_STATE":     "state",
 }
 
 # Human-readable labels for plots
@@ -68,7 +68,9 @@ def load_brfss(filepath: str) -> pd.DataFrame:
         Raw dataframe with renamed columns.
     """
     print(f"Loading BRFSS data from: {filepath}")
-    df = pd.read_csv(filepath, usecols=list(COLUMNS_OF_INTEREST.keys()), low_memory=False)
+    import pyreadstat
+    df, meta = pyreadstat.read_xport(filepath, encoding="latin1")
+    df = df[[c for c in COLUMNS_OF_INTEREST.keys() if c in df.columns]]
     df.rename(columns=COLUMNS_OF_INTEREST, inplace=True)
     print(f"  Raw shape: {df.shape}")
     return df
