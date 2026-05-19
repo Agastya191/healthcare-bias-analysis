@@ -38,25 +38,6 @@ See [`data/README.md`](data/README.md) for download instructions. Raw data files
 
 ---
 
-## Project Structure
-
-```
-healthcare-bias-analysis/
-├── data/
-│   └── README.md           # Download instructions for BRFSS dataset
-├── notebooks/
-│   └── analysis.ipynb      # Main analysis notebook (end-to-end)
-├── src/
-│   ├── preprocess.py       # Data loading, cleaning, recoding
-│   ├── analysis.py         # Statistical tests and models
-│   └── visualize.py        # All figure generation
-├── outputs/                # Saved figures (generated on run)
-├── requirements.txt
-└── .gitignore
-```
-
----
-
 ## Setup & Usage
 
 ```bash
@@ -79,7 +60,7 @@ jupyter notebook notebooks/analysis.ipynb
 
 *(Generated after running the analysis — update with your observed values)*
 
-- **Insurance gap:** Respondents earning >$75k had ~X% coverage vs ~Y% for those earning <$10k — a **Z percentage point disparity**.
+- **Insurance gap:** Respondents earning >$75k had ~X% coverage vs ~Y% for those earning <$10k.
 - **Cost barrier:** Low-income respondents were **X× more likely** to skip a doctor visit due to cost.
 - **Logistic regression:** Each income bracket increase is associated with higher odds of insurance coverage (OR > 1) and lower odds of cost barriers (OR < 1), controlling for education and sex.
 - **Chi-square:** All associations between income/education and access outcomes were statistically significant (p < 0.001).
@@ -103,16 +84,14 @@ jupyter notebook notebooks/analysis.ipynb
 
 ## Implications for Medical Bias Research
 
-Healthcare access disparities don't just affect patient outcomes — they shape the **composition of medical datasets**. When lower-SES populations are less likely to visit doctors, they are:
+Healthcare access disparities don't just affect patient outcomes — they shape the **composition of medical datasets**. When lower SES populations are less likely to visit doctors, they are:
 
 - Underrepresented in EHR-derived training datasets
 - Less likely to receive diagnoses that require specialist access
 - More likely to present at later disease stages
 
-This means ML models trained on clinical data may systematically **underperform for the populations with the highest burden of disease** — a critical issue for equitable AI in medicine.
+This means ML models trained on clinical data may systematically underperform for the populations with the highest burden of disease 
 
 ---
-
-## License
 
 Data sourced from CDC BRFSS (public domain).
