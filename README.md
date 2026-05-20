@@ -1,6 +1,8 @@
 # Socioeconomic Bias in U.S. Healthcare Access
 
-A data analysis project investigating whether income level and education level are associated with disparities in healthcare access across the United States using CDC BRFSS survey data (~400,000 respondents.)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/Agastya191/healthcare-bias-analysis/blob/main/notebooks/analysis.ipynb)
+
+A data analysis project investigating whether income level and education level are associated with disparities in healthcare access across the United States using CDC BRFSS 2022 survey data (445,132 respondents; 339,702 after cleaning).
 
 This work is motivated by the broader challenge of medical dataset bias: populations with limited healthcare access are systematically underrepresented in clinical data, which propagates downstream bias into medical AI models and treatment guidelines.
 
@@ -18,11 +20,11 @@ This work is motivated by the broader challenge of medical dataset bias: populat
 ## Dataset
 
 **CDC Behavioral Risk Factor Surveillance System (BRFSS) — 2022**  
-- 400,000+ U.S. adult respondents  
+- 445,132 U.S. adult respondents (339,702 with complete income, insurance, and cost-barrier answers)  
 - Annual telephone health survey  
 - Variables: income, education, insurance status, cost barriers, checkup frequency, self-rated health  
 
-See [`data/README.md`](data/README.md) for download instructions. Raw data files are not committed to this repo.
+The notebook downloads the data from the CDC automatically. See [`data/README.md`](data/README.md) for manual download instructions. Raw data files are not committed to this repo.
 
 ---
 
@@ -40,30 +42,24 @@ See [`data/README.md`](data/README.md) for download instructions. Raw data files
 
 ## Setup & Usage
 
+**In the browser (no setup):** click the Colab badge above, then `Runtime → Run all`. The notebook downloads the code and the BRFSS data itself.
+
+**Locally:**
 ```bash
-# 1. Clone the repo
 git clone https://github.com/Agastya191/healthcare-bias-analysis.git
 cd healthcare-bias-analysis
-
-# 2. Install dependencies
 pip install -r requirements.txt
-
-# 3. Download BRFSS data (see data/README.md)
-
-# 4. Run the notebook
-jupyter notebook notebooks/analysis.ipynb
+jupyter notebook notebooks/analysis.ipynb   # downloads the data on first run
 ```
 
 ---
 
 ## Key Findings
 
-*(Generated after running the analysis — update with your observed values)*
-
-- **Insurance gap:** Respondents earning >$75k had ~X% coverage vs ~Y% for those earning <$10k.
-- **Cost barrier:** Low-income respondents were **X× more likely** to skip a doctor visit due to cost.
-- **Logistic regression:** Each income bracket increase is associated with higher odds of insurance coverage (OR > 1) and lower odds of cost barriers (OR < 1), controlling for education and sex.
-- **Chi-square:** All associations between income/education and access outcomes were statistically significant (p < 0.001).
+- **Insurance coverage:** 97.3% of respondents earning $75k–$100k had health coverage, compared with 85.5% of those earning under $10k, an 11.8 percentage point gap. In the logistic regression, each step up in income bracket was associated with 19% higher odds of being insured (OR = 1.19, 95% CI 1.19–1.20), controlling for education and sex.
+- **Cost barriers:** 22.9% of respondents earning under $10k skipped a doctor visit because of cost in the past year, compared with 5.1% of those earning $75k–$100k, about 4.5 times as often. Each step up in income bracket was associated with 21% lower odds of a cost barrier (OR = 0.79, 95% CI 0.79–0.80).
+- **Education:** College graduates had 97.7% coverage versus 69.2% for respondents who never attended school, a 28.5 percentage point gap. Each step up in education level was associated with 66% higher odds of coverage (OR = 1.66, 95% CI 1.64–1.69).
+- **Significance:** Chi-square tests found significant associations between income and insurance (χ² = 8,127, df = 10), income and cost barriers (χ² = 12,511, df = 10), and education and insurance (χ² = 13,548, df = 5), all p < 0.001.
 
 ---
 

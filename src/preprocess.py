@@ -24,7 +24,7 @@ COLUMNS_OF_INTEREST = {
 }
 
 # Human-readable labels for plots
-INCOME_LABELS = {
+INCOME_LABELS = {  # INCOME3 codes (2021+ BRFSS); 77/99 = don't know / refused
     1: "< $10k",
     2: "$10k–$15k",
     3: "$15k–$20k",
@@ -32,7 +32,10 @@ INCOME_LABELS = {
     5: "$25k–$35k",
     6: "$35k–$50k",
     7: "$50k–$75k",
-    8: "> $75k",
+    8: "$75k–$100k",
+    9: "$100k–$150k",
+    10: "$150k–$200k",
+    11: "> $200k",
 }
 
 EDUCATION_LABELS = {
@@ -55,12 +58,12 @@ HEALTH_LABELS = {
 
 def load_brfss(filepath: str) -> pd.DataFrame:
     """
-    Load raw BRFSS CSV file and select columns of interest.
+    Load the raw BRFSS SAS transport (.XPT) file and select columns of interest.
 
     Parameters
     ----------
     filepath : str
-        Path to the downloaded BRFSS .csv file.
+        Path to the downloaded BRFSS .XPT file (e.g. data/LLCP2022.XPT).
 
     Returns
     -------

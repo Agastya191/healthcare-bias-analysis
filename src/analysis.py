@@ -72,7 +72,7 @@ def access_by_education(df: pd.DataFrame) -> pd.DataFrame:
 
 # ── Disparity gap metrics ─────────────────────────────────────────────────────
 
-def disparity_gap(summary_df: pd.DataFrame, metric_col: str) -> dict:
+def disparity_gap(summary_df: pd.DataFrame, metric_col: str, higher_is_better: bool = True) -> dict:
     """
     Compute the absolute disparity gap between the best- and worst-off groups.
 
@@ -82,21 +82,25 @@ def disparity_gap(summary_df: pd.DataFrame, metric_col: str) -> dict:
         Output of access_by_income() or access_by_education().
     metric_col : str
         Column name ending in '_pct' to compare.
+    higher_is_better : bool
+        False for outcomes where a lower rate is better (e.g. cost barriers).
 
     Returns
     -------
     dict with keys: best_group, worst_group, best_val, worst_val, gap
     """
-    best_idx  = summary_df[metric_col].idxmax()
-    worst_idx = summary_df[metric_col].idxmin()
+    if higher_is_better:
+        best_idx, worst_idx = summary_df[metric_col].idxmax(), summary_df[metric_col].idxmin()
+    else:
+        best_idx, worst_idx = summary_df[metric_col].idxmin(), summary_df[metric_col].idxmax()
     label_col = summary_df.columns[0]  # first column is the group label
     return {
         "best_group":  summary_df.loc[best_idx,  label_col],
         "worst_group": summary_df.loc[worst_idx, label_col],
         "best_val":    summary_df.loc[best_idx,  metric_col],
         "worst_val":   summary_df.loc[worst_idx, metric_col],
-        "gap":         round(summary_df.loc[best_idx, metric_col]
-                             - summary_df.loc[worst_idx, metric_col], 1),
+        "gap":         round(abs(summary_df.loc[best_idx, metric_col]
+                                 - summary_df.loc[worst_idx, metric_col]), 1),
     }
 
 
@@ -219,7 +223,7 @@ def run_all_analyses(df: pd.DataFrame) -> dict:
 
         # Disparity gaps
         "insurance_gap_income":    disparity_gap(income_summary,    "insurance_pct"),
-        "cost_barrier_gap_income": disparity_gap(income_summary,    "cost_barrier_pct"),
+        "cost_barrier_gap_income": disparity_gap(income_summary,    "cost_barrier_pct", higher_is_better=False),
         "insurance_gap_edu":       disparity_gap(education_summary, "insurance_pct"),
 
         # Chi-square tests
