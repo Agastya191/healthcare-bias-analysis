@@ -56,8 +56,8 @@ jupyter notebook notebooks/analysis.ipynb   # downloads the data on first run
 
 ## Key Findings
 
-- **Insurance coverage:** 97.3% of respondents earning $75k–$100k had health coverage, compared with 85.5% of those earning under $10k, an 11.8 percentage point gap. In the logistic regression, each step up in income bracket was associated with 19% higher odds of being insured (OR = 1.19, 95% CI 1.19–1.20), controlling for education and sex.
-- **Cost barriers:** 22.9% of respondents earning under $10k skipped a doctor visit because of cost in the past year, compared with 5.1% of those earning $75k–$100k, about 4.5 times as often. Each step up in income bracket was associated with 21% lower odds of a cost barrier (OR = 0.79, 95% CI 0.79–0.80).
+- **Insurance coverage:** 98.6% of respondents earning over $200k had health coverage, compared with 85.5% of those earning under $10k, a 13.1 percentage point gap. In the logistic regression, each step up in income bracket was associated with 19% higher odds of being insured (OR = 1.19, 95% CI 1.19–1.20), controlling for education and sex.
+- **Cost barriers:** 22.9% of respondents earning under $10k skipped a doctor visit because of cost in the past year, compared with 1.6% of those earning over $200k, about 14 times as often. Cost barriers fell at nearly every step up the income ladder. Each step up in income bracket was associated with 21% lower odds of a cost barrier (OR = 0.79, 95% CI 0.79–0.80).
 - **Education:** College graduates had 97.7% coverage versus 69.2% for respondents who never attended school, a 28.5 percentage point gap. Each step up in education level was associated with 66% higher odds of coverage (OR = 1.66, 95% CI 1.64–1.69).
 - **Significance:** Chi-square tests found significant associations between income and insurance (χ² = 8,127, df = 10), income and cost barriers (χ² = 12,511, df = 10), and education and insurance (χ² = 13,548, df = 5), all p < 0.001.
 

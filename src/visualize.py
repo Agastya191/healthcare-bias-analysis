@@ -35,6 +35,7 @@ def set_style() -> None:
         "figure.facecolor": "white",
         "axes.facecolor":   "white",
         "axes.edgecolor":   "#CCCCCC",
+        "text.parse_math":  False,  # show "$10k–$15k" literally instead of as math text
     })
 
 
